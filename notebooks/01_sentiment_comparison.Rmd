@@ -1,1 +1,85 @@
+---
+title: "Sentiment Lexicon Comparison"
+output: html_document
+---
 
+```{r setup, message=FALSE}
+library(tidyverse)
+library(tidytext)
+library(readr)
+library(ggplot2)
+library(here)
+```
+
+## Load data
+
+```{r}
+df <- read_csv(here::here("data", "sample", "sample_texts.csv"))
+head(df)
+```
+
+## Tokenize text
+
+```{r}
+tidy_df <- df %>%
+  unnest_tokens(word, text)
+
+head(tidy_df)
+```
+
+## Apply AFINN
+
+```{r}
+afinn_scores <- tidy_df %>%
+  inner_join(get_sentiments("afinn"), by = "word") %>%
+  group_by(id) %>%
+  summarise(afinn_score = sum(value), .groups = "drop")
+
+afinn_scores
+```
+
+## Apply Bing and NRC
+
+```{r}
+bing_scores <- tidy_df %>%
+  inner_join(get_sentiments("bing"), by = "word") %>%
+  mutate(score = ifelse(sentiment == "positive", 1, -1)) %>%
+  group_by(id) %>%
+  summarise(bing_score = sum(score), .groups = "drop")
+
+nrc_scores <- tidy_df %>%
+  inner_join(get_sentiments("nrc"), by = "word") %>%
+  filter(sentiment %in% c("positive", "negative")) %>%
+  mutate(score = ifelse(sentiment == "positive", 1, -1)) %>%
+  group_by(id) %>%
+  summarise(nrc_score = sum(score), .groups = "drop")
+```
+
+## Compare outputs
+
+```{r}
+comparison <- df %>%
+  left_join(afinn_scores, by = "id") %>%
+  left_join(bing_scores, by = "id") %>%
+  left_join(nrc_scores, by = "id") %>%
+  mutate(across(c(afinn_score, bing_score, nrc_score), ~replace_na(., 0)))
+
+comparison
+```
+
+## Plot comparison
+
+```{r}
+plot_data <- comparison %>%
+  select(id, afinn_score, bing_score, nrc_score) %>%
+  pivot_longer(cols = -id, names_to = "lexicon", values_to = "score")
+
+ggplot(plot_data, aes(x = factor(id), y = score, fill = lexicon)) +
+  geom_col(position = "dodge") +
+  theme_minimal() +
+  labs(
+    title = "Sentiment Scores by Lexicon",
+    x = "Text ID",
+    y = "Sentiment Score"
+  )
+```
