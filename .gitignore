@@ -1,1 +1,9 @@
-
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+results/figures/*.png
+results/tables/*.xlsx
+.DS_Store
+Thumbs.db
