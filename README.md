@@ -1,5 +1,3 @@
-# sentiment-lexicon-comparison
-
 # Sentiment Lexicon Comparison in R
 
 A reproducible R project comparing multiple lexicon-based sentiment analysis approaches on short social media-style texts.
