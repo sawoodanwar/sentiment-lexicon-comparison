@@ -7,15 +7,23 @@
 
 ## Overview
 
-This repository provides a **reproducible R workflow** for comparing three major lexicon-based sentiment analysis approaches — **AFINN**, **Bing**, and **NRC** — applied to short social media-style texts. It is designed to help researchers understand how the choice of lexicon significantly affects sentiment scores and classifications on the same dataset.
+This repository provides a **reproducible R workflow** for comparing three major lexicon-based sentiment analysis approaches — **AFINN**, **Bing**, and **NRC** — applied to short social media-style texts. It helps researchers understand how the choice of lexicon significantly affects sentiment scores and classifications on the same dataset.
 
-This project is part of a broader research toolkit developed by **Sawood Anwar** (PhD, University of Urbino Carlo Bo), complementing multi-method sentiment workflows used in computational communication research.
+---
 
-> **Related Projects:**
-> - 🦠 [facebook-reactions-covid19-india](https://github.com/sawoodanwar/facebook-reactions-covid19-india) — PhD thesis project using sentimentr
-> - 🧠 [stm-social-media-r](https://github.com/sawoodanwar/stm-social-media-r) — STM topic modeling toolkit
-> - 📊 [meta-content-analysis](https://github.com/sawoodanwar/meta-content-analysis) — Meta platform content analysis
-> - 🗳️ [reddit-political-misinfo-coding](https://github.com/sawoodanwar/reddit-political-misinfo-coding) — Reddit manual coding project
+## 🔗 Related Projects
+
+| Repository | Description |
+|---|---|
+| 🦠 [facebook-reactions-covid19-india](https://github.com/sawoodanwar/facebook-reactions-covid19-india) | PhD thesis project using sentimentr |
+| ⏱️ [timeseries-facebook-engagement-r](https://github.com/sawoodanwar/timeseries-facebook-engagement-r) | Time-series toolkit: general, COVID-19 extension & misinfo spike detection |
+| 🧠 [stm-social-media-r](https://github.com/sawoodanwar/stm-social-media-r) | STM topic modeling toolkit |
+| 📊 [meta-content-analysis](https://github.com/sawoodanwar/meta-content-analysis) | Facebook & Instagram health misinformation analysis |
+| 🗳️ [reddit-political-misinfo-coding](https://github.com/sawoodanwar/reddit-political-misinfo-coding) | Reddit political communication manual coding |
+| 🔄 [cross-platform-engagement-analysis](https://github.com/sawoodanwar/cross-platform-engagement-analysis) | Unified cross-platform engagement framework |
+| 🔴 [disinformation-detection-ml](https://github.com/sawoodanwar/disinformation-detection-ml) | ML classifier for disinformation detection |
+| 🟣 [nlp-news-classification-r](https://github.com/sawoodanwar/nlp-news-classification-r) | Supervised NLP news classification |
+| 🟢 [crowdtangle-meta-api-workflow](https://github.com/sawoodanwar/crowdtangle-meta-api-workflow) | Academic data collection pipeline |
 
 ---
 
@@ -55,17 +63,13 @@ This project is part of a broader research toolkit developed by **Sawood Anwar**
 
 ```
 sentiment-lexicon-comparison/
-├── data/
-│   └── sample/                    # Synthetic sample texts
-├── scripts/
-│   └── R/
-│       └── sentiment_comparison.R    # Main analysis script
-├── notebooks/                     # R Markdown workflow
-├── output/
-│   ├── figures/                   # Sentiment plots
-│   └── tables/                    # Lexicon comparison tables
-├── environment/
-│   └── install_packages.R         # Package installation script
+├── data/sample/
+├── scripts/R/
+│   └── sentiment_comparison.R
+├── notebooks/
+├── output/figures/
+├── output/tables/
+├── environment/install_packages.R
 ├── .gitignore
 ├── README.md
 └── LICENSE
@@ -75,45 +79,22 @@ sentiment-lexicon-comparison/
 
 ## Quick Start
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/sawoodanwar/sentiment-lexicon-comparison.git
-cd sentiment-lexicon-comparison
-```
-
-### 2. Install required packages
 ```r
 source("environment/install_packages.R")
-# Or manually:
-install.packages(c("tidyverse", "tidytext", "ggplot2", "textdata"))
-```
-
-### 3. Run the analysis
-```r
 source("scripts/R/sentiment_comparison.R")
 ```
 
 ---
 
-## Expected Outputs
-
-- A table of per-document sentiment scores for each lexicon
-- Side-by-side lexicon comparison summaries
-- Bar plots and distribution charts of sentiment results
-- Divergence analysis between lexicon outputs
-
----
-
 ## Key Insight
 
-Lexicon choice can meaningfully alter research findings. For example, a text labelled **positive** by AFINN may be labelled **neutral or mixed** by NRC, and vice versa. This repository helps researchers make informed, justified decisions about which lexicon best fits their data and research questions.
+Lexicon choice can meaningfully alter research findings. A text labelled **positive** by AFINN may be labelled **neutral or mixed** by NRC. This repository helps researchers make informed, justified decisions about which lexicon best fits their data.
 
 ---
 
 ## Future Extensions
 
 - Add `sentimentr` (valence-aware, sentence-level) for comparison
-- Extend to multi-language datasets
 - Integrate with STM workflow to compare topic-level sentiment across lexicons
 - Add inter-lexicon agreement metrics
 
@@ -121,21 +102,15 @@ Lexicon choice can meaningfully alter research findings. For example, a text lab
 
 ## Author
 
-**Sawood Anwar**
-PhD in Humanities (Text and Communication Sciences) — defended 22 September 2025
-University of Urbino Carlo Bo, Italy
-Supervisor: Prof. Fabio Giglietto | Co-Supervisor: Prof. Giovanni Boccia Artieri
+**Sawood Anwar** — PhD in Humanities (Text and Communication Sciences), defended 22 September 2025
+University of Urbino Carlo Bo | Supervisor: Prof. Fabio Giglietto | Co-Supervisor: Prof. Giovanni Boccia Artieri
 
-- 🔗 [GitHub](https://github.com/sawoodanwar)
-- 💼 [LinkedIn](https://www.linkedin.com/in/sawood-anwar/)
-- 🎓 [Google Scholar](https://scholar.google.com/citations?hl=en&user=GgsMu3sAAAAJ)
+- 🔗 [GitHub](https://github.com/sawoodanwar) | 💼 [LinkedIn](https://www.linkedin.com/in/sawood-anwar/) | 🎓 [Google Scholar](https://scholar.google.com/citations?hl=en&user=GgsMu3sAAAAJ)
 
 ---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-
----
+MIT License. See [LICENSE](LICENSE).
 
 *Keywords: Sentiment Analysis, Lexicon-Based NLP, AFINN, Bing, NRC, tidytext, R, Computational Communication, Social Media Text Analysis*
